@@ -17,6 +17,7 @@ import {AuthGuardService} from './services/auth-guard.service';
 import {ReferencesService} from './services/references.service';
 import {UserService} from './services/user.service';
 import {RouterModule, Routes} from '@angular/router';
+import { HeaderComponent } from './header/header.component';
 
 const appRoutes: Routes = [
   { path: 'auth', component: AuthComponent },
@@ -32,7 +33,8 @@ const appRoutes: Routes = [
     SingleReferenceComponent,
     AuthComponent,
     ReferenceFormComponent,
-    UserFormComponent
+    UserFormComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
