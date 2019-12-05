@@ -21,7 +21,8 @@ import { HeaderComponent } from './header/header.component';
 
 const appRoutes: Routes = [
   { path: 'auth', component: AuthComponent },
-  { path: 'references', component: ReferenceViewPublicComponent }
+  { path: 'references', component: ReferenceViewPublicComponent },
+  { path: '', redirectTo: 'references', pathMatch: 'full' },
 ];
 
 @NgModule({

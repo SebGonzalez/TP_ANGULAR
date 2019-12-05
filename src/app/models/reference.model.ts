@@ -1,7 +1,7 @@
 export class Reference {
 
-  constructor(public nomMission: string, public nomClient: string, public ville: string,
-              public departement: string, public anneeDebut: string, public anneeFin: string,
-              public montant: number, public details: string, public domaine: string ) {
+  constructor(public id: string, public mission: string, public client: string, public idVille: string,
+              public anneeDebut: string, public anneeFin: string,
+              public montantPrestation: string, public detailPrestation: string) {
   }
 }

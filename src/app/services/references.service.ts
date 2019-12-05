@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Reference} from '../models/reference.model';
 import {HttpClient} from '@angular/common/http';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable({
   providedIn: 'root'
@@ -8,14 +9,25 @@ import {HttpClient} from '@angular/common/http';
 export class ReferencesService {
 
   references: Reference[] = [];
-  constructor(private httpClient: HttpClient) { }
+  referencesSubject = new Subject<Reference[]>();
 
-  getAppareilsFromBack() {
+  constructor(private httpClient: HttpClient) {
+    this.getReferencesFromBack();
+  }
+
+  emitReferenceSubject() {
+    this.referencesSubject.next(this.references);
+  }
+
+  getReferencesFromBack() {
+    console.log('Lecture des ref :');
     this.httpClient
       .get<Reference[]>('http://localhost:3000/reference')
       .subscribe(
         (response) => {
           this.references = response;
+          this.emitReferenceSubject();
+          console.log(this.references);
         },
         (error) => {
           console.log('Erreur ! : ' + error);
