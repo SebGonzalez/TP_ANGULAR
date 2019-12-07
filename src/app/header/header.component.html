@@ -7,7 +7,7 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li routerLinkActive="active" *ngIf="userService.getTypeUser() == 'NonConnecte'">
-        <a routerLink="">Connexion</a>
+        <a routerLink="/auth">Connexion</a>
       </li>
       <li>
         <a (click)="onSignOut()"

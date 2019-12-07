@@ -25,6 +25,7 @@ export class UserService {
         firebase.auth().signInWithEmailAndPassword(email, password).then(
           () => {
             resolve();
+            this.typeUser = 'ok';
           },
           (error) => {
             reject(error);
