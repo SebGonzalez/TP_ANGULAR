@@ -34,4 +34,8 @@ export class ReferencesService {
         }
       );
   }
+
+  getSingleReference(id: number) {
+    return this.references[id];
+  }
 }

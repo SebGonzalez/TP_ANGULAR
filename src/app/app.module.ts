@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { ReferenceComponent } from './reference/reference.component';
 import { ReferenceViewPublicComponent } from './reference/reference-view-public/reference-view-public.component';
 import { ReferenceViewPrivateComponent } from './reference/reference-view-private/reference-view-private.component';
-import { SingleReferenceComponent } from './reference/single-reference/single-reference.component';
 import { AuthComponent } from './auth/auth.component';
 import { ReferenceFormComponent } from './reference/reference-form/reference-form.component';
 import { UserFormComponent } from './user-form/user-form.component';
@@ -18,10 +17,15 @@ import {ReferencesService} from './services/references.service';
 import {UserService} from './services/user.service';
 import {RouterModule, Routes} from '@angular/router';
 import { HeaderComponent } from './header/header.component';
+import { SingleReferencePrivateComponent } from './reference/single-reference-private/single-reference-private.component';
+import { SingleReferencePublicComponent } from './reference/single-reference-public/single-reference-public.component';
+import { ReferenceViewComponent } from './reference/reference-view/reference-view.component';
+import { SingleReferenceComponent } from './reference/single-reference/single-reference.component';
 
 const appRoutes: Routes = [
   { path: 'auth', component: AuthComponent },
-  { path: 'references', component: ReferenceViewPublicComponent },
+  { path: 'references', component: ReferenceViewComponent },
+  { path: 'reference/view/:id', component: SingleReferenceComponent},
   { path: '', redirectTo: 'references', pathMatch: 'full' },
 ];
 
@@ -31,11 +35,14 @@ const appRoutes: Routes = [
     ReferenceComponent,
     ReferenceViewPublicComponent,
     ReferenceViewPrivateComponent,
-    SingleReferenceComponent,
     AuthComponent,
     ReferenceFormComponent,
     UserFormComponent,
-    HeaderComponent
+    HeaderComponent,
+    SingleReferencePrivateComponent,
+    SingleReferencePublicComponent,
+    ReferenceViewComponent,
+    SingleReferenceComponent
   ],
   imports: [
     BrowserModule,

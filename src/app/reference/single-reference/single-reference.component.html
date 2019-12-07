@@ -1,1 +1,8 @@
-<p>single-reference works!</p>
+<app-single-reference-public *ngIf="userService.getTypeUser() == 'NonConnecte'">
+
+</app-single-reference-public>
+
+<app-single-reference-private *ngIf="userService.getTypeUser() != 'NonConnecte'">
+
+</app-single-reference-private>
+

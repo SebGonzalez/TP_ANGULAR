@@ -1,0 +1,7 @@
+<app-reference-view-public *ngIf="userService.getTypeUser() == 'NonConnecte'">
+
+</app-reference-view-public>
+
+<app-reference-view-private *ngIf="userService.getTypeUser() != 'NonConnecte'">
+
+</app-reference-view-private>
