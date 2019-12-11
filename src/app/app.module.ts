@@ -21,6 +21,7 @@ import { SingleReferencePrivateComponent } from './reference/single-reference-pr
 import { SingleReferencePublicComponent } from './reference/single-reference-public/single-reference-public.component';
 import { ReferenceViewComponent } from './reference/reference-view/reference-view.component';
 import { SingleReferenceComponent } from './reference/single-reference/single-reference.component';
+import {VillesService} from "./services/villes.service";
 
 const appRoutes: Routes = [
   { path: 'auth', component: AuthComponent },
@@ -51,7 +52,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [AuthService, AuthGuardService, ReferencesService, UserService],
+  providers: [AuthService, AuthGuardService, ReferencesService, UserService, VillesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
