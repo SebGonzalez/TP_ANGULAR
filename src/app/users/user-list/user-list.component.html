@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h2>Listes utilisateurs :</h2>
+    <div class="list-group">
+      <button
+        class="list-group-item"
+        *ngFor="let user of users; let i = index"
+        (click)="onViewUser(i)">
+        <h3 class="list-group-item-heading">
+          {{ user.mail }}
+        </h3>
+        <p class="list-group-item-text">{{ user.id }}</p>
+        <p class="list-group-item-text">{{ user.type }}</p>
+      </button>
+    </div>
+  </div>
+</div>
