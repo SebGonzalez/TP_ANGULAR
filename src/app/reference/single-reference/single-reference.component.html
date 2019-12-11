@@ -1,8 +1,9 @@
-<app-single-reference-public *ngIf="userService.getTypeUser() == 'NonConnecte'">
-
-</app-single-reference-public>
-
-<app-single-reference-private *ngIf="userService.getTypeUser() != 'NonConnecte'">
-
-</app-single-reference-private>
-
+<div class="row">
+  <div class="col-xs-12">
+    <h1>{{ reference.mission }}</h1>
+    <h3>{{ reference.client }}</h3>
+    <p>{{ reference.anneeDebut }} - {{ reference.anneeFin}}</p>
+    <p>Ville : {{ville.nomVille}} </p>
+    <button class="btn btn-default" (click)="onBack()">Retour</button>
+  </div>
+</div>

@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {ReferencesService} from '../../services/references.service';
 import {Reference} from '../../models/reference.model';
+import {Subscription} from 'rxjs/Subscription';
+import {ReferencesService} from '../../services/references.service';
 import {Router} from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
 
 @Component({
-  selector: 'app-reference-view-public',
-  templateUrl: './reference-view-public.component.html',
-  styleUrls: ['./reference-view-public.component.css']
+  selector: 'app-reference-list',
+  templateUrl: './reference-list.component.html',
+  styleUrls: ['./reference-list.component.css']
 })
-export class ReferenceViewPublicComponent implements OnInit {
+export class ReferenceListComponent implements OnInit {
   references: Reference[];
   referencesSubscription: Subscription;
   constructor(private referencesService: ReferencesService, private router: Router) { }
@@ -21,8 +21,6 @@ export class ReferenceViewPublicComponent implements OnInit {
       }
     );
     this.referencesService.emitReferenceSubject();
-    console.log('Ref component :');
-    console.log(this.references);
   }
 
   onViewReference(id: number) {
