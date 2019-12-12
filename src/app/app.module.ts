@@ -23,6 +23,7 @@ const appRoutes: Routes = [
   { path: 'auth', component: AuthComponent },
   { path: 'references', component: ReferenceListComponent },
   { path: 'reference/view/:id', component: SingleReferenceComponent},
+  { path: 'reference/new', component: ReferenceFormComponent},
   { path: 'users', component: UserListComponent},
   { path: '', redirectTo: 'references', pathMatch: 'full' },
 ];

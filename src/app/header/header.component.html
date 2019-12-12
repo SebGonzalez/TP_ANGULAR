@@ -7,6 +7,9 @@
       <li routerLinkActive="active" *ngIf="userService.getTypeUser() == 'Administrateur'">
         <a routerLink="/users">Utilisateurs</a>
       </li>
+      <li routerLinkActive="active" *ngIf="userService.getTypeUser() == 'Administrateur' || userService.getTypeUser() == 'Chef'">
+        <a routerLink="/reference/new">Nouvelle référence</a>
+      </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li routerLinkActive="active" *ngIf="userService.getTypeUser() == 'NonConnecte'">

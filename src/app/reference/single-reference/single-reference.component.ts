@@ -26,7 +26,6 @@ export class SingleReferenceComponent implements OnInit {
         this.ville = ville;
       }
     );
-    console.log('Ville : ' + this.ville);
   }
 
   onBack() {

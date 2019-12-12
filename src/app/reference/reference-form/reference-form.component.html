@@ -1,1 +1,62 @@
-<p>reference-form works!</p>
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <h2>Enregistrer une nouvelle référence</h2>
+    <form [formGroup]="referenceForm" (ngSubmit)="onSaveReference()">
+      <div class="form-group">
+        <label for="mission">Nom de la mission</label>
+        <input type="text" id="mission"
+               class="form-control" formControlName="mission">
+      </div>
+      <div class="form-group">
+        <label for="client">Client</label>
+        <input type="text" id="client"
+               class="form-control" formControlName="client">
+      </div>
+      <div class="form-group">
+        <label for="departement">Département</label>
+        <select id="departement" class="form-control" formControlName="departement" (change)="onChangeDepartement($event)">
+          <option *ngFor="let departement of departements">
+            {{departement.id}} - {{departement.nomDep}}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="ville">Ville</label>
+        <select id="ville" class="form-control" formControlName="ville">
+          <option *ngFor="let ville of villes">
+            {{ville.nomVille}}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="anneeDebut">Année de début</label>
+        <textarea id="anneeDebut"
+                  class="form-control" formControlName="anneeDebut">
+        </textarea>
+      </div>
+      <div class="form-group">
+        <label for="anneeFin">Année de fin</label>
+        <textarea id="anneeFin"
+                  class="form-control" formControlName="anneeFin">
+        </textarea>
+      </div>
+      <div class="form-group">
+        <label for="montantPrestation">Montant de la prestation</label>
+        <input type="number" id="montantPrestation"
+                  class="form-control" formControlName="montantPrestation">
+      </div>
+      <div class="form-group">
+        <label for="detailPrestation">Détail de la prestation</label>
+        <textarea id="detailPrestation"
+                  class="form-control" formControlName="detailPrestation">
+        </textarea>
+      </div>
+      <button class="btn btn-success" [disabled]="referenceForm.invalid"
+              type="submit">Enregistrer
+      </button>
+
+    </form>
+  </div>
+</div>
