@@ -1,4 +1,5 @@
 <div class="container-fluid contour">
+  <kendo-pdf-export #pdf paperSize="A4" margin="2cm">
   <div class="container-fluid">
     <div class="blue">
       <h1>{{ reference.mission }}</h1>
@@ -17,7 +18,7 @@
       <p>{{ reference.anneeDebut }} - {{ reference.anneeFin}}</p>
       <br>
       <p class="orange up">Montant des prestations</p>
-      <p>{{ reference.montantPrestation }}</p>
+      <p *ngIf="userService.getTypeUser() != 'NonConnecte'">{{ reference.montantPrestation }}</p>
     </div>
   </div>
   <div class="container">
@@ -27,10 +28,16 @@
       <p>{{reference.detailPrestation}}</p>
     </div>
   </div>
+  </kendo-pdf-export>
 
 
   <div class=" up down text-center">
-    <button class="btn btn-default" (click)="onBack()">Exporter en PDF</button>
+    <button *ngIf="userService.getTypeUser() == 'Chef' || userService.getTypeUser() == 'Administrateur'"
+            class="btn btn-default" (click)="onBack()">Edition
+    </button>
+    <button *ngIf="userService.getTypeUser() == 'Chef' || userService.getTypeUser() == 'Administrateur'"
+            class="btn btn-default" kendo-button (click)="pdf.saveAs('demo-content.pdf')">Exporter en PDF
+    </button>
     <button class="btn btn-default" (click)="onBack()">Retour</button>
   </div>
 </div>

@@ -18,6 +18,10 @@ import { SingleReferenceComponent } from './reference/single-reference/single-re
 import {VillesService} from './services/villes.service';
 import { ReferenceListComponent } from './reference/reference-list/reference-list.component';
 import { UserListComponent } from './users/user-list/user-list.component';
+import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 const appRoutes: Routes = [
   { path: 'auth', component: AuthComponent },
@@ -44,7 +48,9 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    PDFExportModule,
+    BrowserAnimationsModule
   ],
   providers: [AuthService, AuthGuardService, ReferencesService, UserService, VillesService],
   bootstrap: [AppComponent]

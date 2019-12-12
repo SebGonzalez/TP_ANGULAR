@@ -6,7 +6,10 @@ import {User} from '../models/user.model';
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
+
+
 
   private typeUser: string;
   constructor(private httpClient: HttpClient) {
