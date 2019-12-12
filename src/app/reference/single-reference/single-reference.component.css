@@ -1,0 +1,47 @@
+.blue{
+  background-color: #00355b;
+  color: white;
+  height: 100%;
+  width: 100%;
+  padding-left: 5%;
+  padding-top: 2%;
+}
+
+.orange{
+  color: orange;
+  font-weight: bold;
+}
+
+.up{
+  padding-top: 10%;
+  padding-bottom: 4%;
+}
+
+.left{
+  float: left;
+}
+
+.right{
+  float: right;
+}
+
+.picture{
+  height: 300px;
+}
+
+.pointeur{
+  height: 20px;
+}
+
+.mission-color{
+  color: #38b4e7;
+  font-weight: bold;
+}
+
+.down{
+  margin-bottom: 3%;
+}
+
+.contour{
+  border: 10px solid #e6e6e6;
+}

@@ -1,9 +1,36 @@
-<div class="row">
-  <div class="col-xs-12">
-    <h1>{{ reference.mission }}</h1>
-    <h3>{{ reference.client }}</h3>
-    <p>{{ reference.anneeDebut }} - {{ reference.anneeFin}}</p>
-    <p>Ville : {{ville.nomVille}} </p>
+<div class="container-fluid contour">
+  <div class="container-fluid">
+    <div class="blue">
+      <h1>{{ reference.mission }}</h1>
+      <h5 class="up">Client : {{ reference.client }}</h5>
+    </div>
+
+    <div class="row left">
+      <p><img class="pointeur" src="../../../assets/pointeur.jpg"/> Nom de la ville : {{ville.nomVille}}
+        ({{ville.departement}})</p>
+      <img class="picture up" src="../../../assets/pole-emploi.jpg"/>
+
+    </div>
+
+    <div class="row right up">
+      <p class="orange">Dates</p>
+      <p>{{ reference.anneeDebut }} - {{ reference.anneeFin}}</p>
+      <br>
+      <p class="orange up">Montant des prestations</p>
+      <p>{{ reference.montantPrestation }}</p>
+    </div>
+  </div>
+  <div class="container">
+
+    <div class="left">
+      <h4 class="mission-color">Missions détaillées : </h4>
+      <p>{{reference.detailPrestation}}</p>
+    </div>
+  </div>
+
+
+  <div class=" up down text-center">
+    <button class="btn btn-default" (click)="onBack()">Exporter en PDF</button>
     <button class="btn btn-default" (click)="onBack()">Retour</button>
   </div>
 </div>
