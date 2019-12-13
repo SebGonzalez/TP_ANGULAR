@@ -58,11 +58,12 @@ export class ReferenceFormComponent implements OnInit {
     const id = this.referencesService.getNewIdForReference();
     const mission = this.referenceForm.get('mission').value;
     const client = this.referenceForm.get('client').value;
+    const idVille = this.referenceForm.get('ville').value;
     const anneeDebut = this.referenceForm.get('anneeDebut').value;
     const anneeFin = this.referenceForm.get('anneeFin').value;
     const montantPrestation = this.referenceForm.get('montantPrestation').value;
     const detailPrestation = this.referenceForm.get('detailPrestation').value;
-    const newReference = new Reference('' + id, mission, client, '', anneeDebut, anneeFin, montantPrestation, detailPrestation);
+    const newReference = new Reference('' + id, mission, client, idVille, anneeDebut, anneeFin, montantPrestation, detailPrestation);
     this.referencesService.createNewReference(newReference);
     this.router.navigate(['/']);
   }

@@ -14,7 +14,7 @@
       </div>
       <div class="form-group">
         <label for="departement">Département</label>
-        <select id="departement" class="form-control" formControlName="departement" (change)="onChangeDepartement($event)">
+        <select id="departement" class="form-control" (change)="onChangeDepartement($event)">
           <option *ngFor="let departement of departements">
             {{departement.id}} - {{departement.nomDep}}
           </option>
@@ -24,7 +24,7 @@
       <div class="form-group">
         <label for="ville">Ville</label>
         <select id="ville" class="form-control" formControlName="ville">
-          <option *ngFor="let ville of villes">
+          <option [value]="ville.id" *ngFor="let ville of villes">
             {{ville.nomVille}}
           </option>
         </select>
