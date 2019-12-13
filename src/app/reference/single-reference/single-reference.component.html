@@ -9,7 +9,7 @@
     <div class="row left">
       <p><img class="pointeur" src="../../../assets/pointeur.jpg"/> Nom de la ville : {{ville.nomVille}}
         ({{ville.departement}})</p>
-      <img class="picture up" src="../../../assets/pole-emploi.jpg"/>
+      <img class="picture up"  *ngIf="reference.img" [src]="reference.img"/>
 
     </div>
 
@@ -33,10 +33,10 @@
 
   <div class=" up down text-center">
     <button *ngIf="userService.getTypeUser() == 'Chef' || userService.getTypeUser() == 'Administrateur'"
-            class="btn btn-default" (click)="onBack()">Edition
+            class="btn btn-default" (click)="onEdition()">Edition
     </button>
     <button *ngIf="userService.getTypeUser() == 'Chef' || userService.getTypeUser() == 'Administrateur'"
-            class="btn btn-default" kendo-button (click)="pdf.saveAs('demo-content.pdf')">Exporter en PDF
+            class="btn btn-default" kendo-button (click)="pdf.saveAs('reference.pdf')">Exporter en PDF
     </button>
     <button class="btn btn-default" (click)="onBack()">Retour</button>
   </div>

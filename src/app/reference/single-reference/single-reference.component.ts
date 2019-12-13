@@ -43,7 +43,7 @@ export class SingleReferenceComponent implements OnInit {
   @ViewChild('content') content: ElementRef;
 
   ngOnInit() {
-    this.reference = new Reference('', '', '', '', '', '', '', '');
+    this.reference = new Reference('', '', '', '', '', '', '', [], '');
     const id = this.route.snapshot.params.id;
     this.reference = this.referencesService.getSingleReference(id);
     this.villesService.getSingleVille(this.reference.idVille).then(
@@ -51,6 +51,12 @@ export class SingleReferenceComponent implements OnInit {
         this.ville = ville;
       }
     );
+    console.log(this.reference.domaine);
+    console.log(this.reference.detailPrestation);
+  }
+
+  onEdition() {
+    this.router.navigate(['/reference/edit'], { state: this.reference });
   }
 
   onBack() {

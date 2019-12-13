@@ -20,7 +20,14 @@
       "anneeDebut": "2008",
       "anneeFin": "2013",
       "montantPrestation": "15000€",
-      "detailPrestation": "Réalisation back end et front end du super site"
+      "detailPrestation": [
+      	"Réalisation back end et front end du super site",
+      	"C'est très cool"
+      ],
+      "domaine": [
+        "Mobile",
+        "IOT"
+      ]
     },
     {
       "id": "2",
@@ -30,61 +37,32 @@
       "anneeDebut": "2015",
       "anneeFin": "2019",
       "montantPrestation": "620000€",
-      "detailPrestation": "Création d'un drone pour un projet militaire top secret pour la bagarre"
+      "detailPrestation": [
+      	"Création d'un drone pour un projet militaire top secret pour la bagarre",
+      	"C'est très cool"
+      ],
+      "domaine": [
+        "Mobile",
+        "IOT"
+      ]
     },
     {
       "id": "3",
-      "mission": "efzf",
-      "client": "refreg",
-      "idVille": "",
-      "anneeDebut": "ergerg",
-      "anneeFin": "regegre",
-      "montantPrestation": 55,
-      "detailPrestation": "regr"
-    },
-    {
-      "id": "4",
-      "mission": "test",
-      "client": "frrfr",
-      "idVille": "3614",
-      "anneeDebut": "fgtrrg",
-      "anneeFin": "rgrtgtr",
-      "montantPrestation": 18000,
-      "detailPrestation": "frehrht"
-    }
-  ],
-  "themes": [
-    {
-      "id": "1",
-      "nom": "Bâtiment"
-    },
-    {
-      "id": "2",
-      "nom": "Industrie"
-    },
-    {
-      "id": "3",
-      "nom": "Aménagement Urbain"
-    },
-    {
-      "id": "4",
-      "nom": "Transport"
-    },
-    {
-      "id": "5",
-      "nom": "Industrie"
-    },
-    {
-      "id": "6",
-      "nom": "Eau"
-    },
-    {
-      "id": "7",
-      "nom": "Environnement"
-    },
-    {
-      "id": "8",
-      "nom": "Energie"
+      "mission": "rgrgre",
+      "client": "rgerger",
+      "idVille": "1731",
+      "anneeDebut": "rgergr",
+      "anneeFin": "egergerg",
+      "montantPrestation": 12,
+      "detailPrestation": [
+      	"rgrgrg",
+      	"C'est très cool"
+      ],
+      "img": "https://firebasestorage.googleapis.com/v0/b/tp-exam-angular.appspot.com/o/images%2F1576272206677Capture%20d%E2%80%99e%CC%81cran%202019-11-30%20a%CC%80%2018.34.10.png?alt=media&token=661060a4-31f3-4a15-9d6c-00782caca033",
+      "domaine": [
+        "Mobile",
+        "IOT"
+      ]
     }
   ],
   "departement": [

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Reference} from '../models/reference.model';
 import {HttpClient} from '@angular/common/http';
 import { Subject } from 'rxjs/Subject';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -54,5 +55,27 @@ export class ReferencesService {
           console.log('Erreur ! : ' + error);
         }
       );
+  }
+
+  uploadFile(file: File) {
+    return new Promise(
+      (resolve, reject) => {
+        const almostUniqueFileName = Date.now().toString();
+        const upload = firebase.storage().ref()
+          .child('images/' + almostUniqueFileName + file.name).put(file);
+        upload.on(firebase.storage.TaskEvent.STATE_CHANGED,
+          () => {
+            console.log('Chargement…');
+          },
+          (error) => {
+            console.log('Erreur de chargement ! : ' + error);
+            reject();
+          },
+          () => {
+            resolve(upload.snapshot.ref.getDownloadURL());
+          }
+        );
+      }
+    );
   }
 }
