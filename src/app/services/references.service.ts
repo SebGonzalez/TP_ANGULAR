@@ -57,6 +57,36 @@ export class ReferencesService {
       );
   }
 
+  updateReference(newReference: Reference) {
+    console.log('ID : ' + +newReference.id);
+    const ref = this.getSingleReference(+newReference.id);
+    console.log('Ref : ' + ref);
+    const index = this.references.indexOf(ref);
+    console.log('Index : ' + index);
+    this.references[index] = newReference;
+    this.emitReferenceSubject();
+
+    this.httpClient
+      .delete('http://localhost:3000/reference/' + newReference.id)
+      .subscribe(
+        () => {
+          this.httpClient
+            .post('http://localhost:3000/reference', newReference)
+            .subscribe(
+              () => {
+                console.log('Enregistrement terminé !');
+              },
+              (error) => {
+                console.log('Erreur ! : ' + error);
+              }
+            );
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
+  }
+
   uploadFile(file: File) {
     return new Promise(
       (resolve, reject) => {

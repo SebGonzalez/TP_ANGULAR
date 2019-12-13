@@ -15,7 +15,8 @@ import {Departement} from '../../models/departement.model';
 })
 export class ReferenceFormComponent implements OnInit {
 
-  refEdit = new Reference('', '', '', '', '', '', '', [], '');
+  refEdit: Reference;
+  villeEdit: Ville;
   referenceForm: FormGroup;
   fileIsUploading = false;
   fileUrl: string;
@@ -28,40 +29,55 @@ export class ReferenceFormComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private referencesService: ReferencesService,
               private villesService: VillesService, private router: Router) {
-    /*console.log(this.router.getCurrentNavigation().extras.state); // should log out 'bar'
     this.refEdit = this.router.getCurrentNavigation().extras.state as Reference;
-    console.log('reference : ' + this.refEdit);*/
+    this.villesService.getSingleVille(this.refEdit.idVille).then(
+      (ville: Ville) => {
+        this.villeEdit = ville;
+        console.log('Ville edit : ' + this.villeEdit.nomVille);
+        this.departementsSubscription = this.villesService.departementsSubject.subscribe(
+          (departements: Departement[]) => {
+            this.departements = departements;
+            console.log(this.departements);
+            this.departements.unshift(new Departement('', this.villeEdit.departement));
+            this.villes = this.villesService.getVillesByDepartement(this.villeEdit.departement);
+            this.villes.unshift(this.villeEdit);
+
+          }
+        );
+        this.villesService.emitDepartementSubject();
+      }
+    );
   }
 
   ngOnInit() {
-
-    //this.refEdit = this.router.getCurrentNavigation().extras.state as Reference;
+    if (!this.refEdit) {
+      this.refEdit = new Reference('', '', '', '', '', '', '', [''], '');
+    }
+    this.villes = this.villesService.getVillesByDepartement('01');
     this.initForm();
-
-    this.departementsSubscription = this.villesService.departementsSubject.subscribe(
-      (departements: Departement[]) => {
-        this.departements = departements;
-      }
-    );
-    console.log('Villes : ' + this.villes);
-    console.log('fin');
   }
 
   initForm() {
     this.referenceForm = this.formBuilder.group({
-      mission: ['', Validators.required],
-      client: ['', Validators.required],
-      ville: ['', Validators.required],
-      anneeDebut: ['', Validators.required],
-      anneeFin: ['', Validators.required],
-      montantPrestation: ['', Validators.required],
-      details: this.formBuilder.array(['']),
-      domaines: this.formBuilder.array([])
+      mission: [this.refEdit.mission, Validators.required],
+      client: [this.refEdit.client, Validators.required],
+      ville: [''],
+      anneeDebut: [this.refEdit.anneeDebut, Validators.required],
+      anneeFin: [this.refEdit.anneeFin, Validators.required],
+      montantPrestation: [this.refEdit.montantPrestation, Validators.required],
+      details: this.formBuilder.array(this.refEdit.detailPrestation),
+      domaines: this.formBuilder.array(this.refEdit.domaine)
     });
   }
 
   onSaveReference() {
-    const id = this.referencesService.getNewIdForReference();
+
+    let id;
+    if (this.refEdit.id === '') {
+      id = this.referencesService.getNewIdForReference();
+    } else {
+      id = this.refEdit.id;
+    }
     const mission = this.referenceForm.get('mission').value;
     const client = this.referenceForm.get('client').value;
     const idVille = this.referenceForm.get('ville').value;
@@ -74,7 +90,12 @@ export class ReferenceFormComponent implements OnInit {
     // tslint:disable-next-line:max-line-length
     const newReference = new Reference('' + id, mission, client, idVille, anneeDebut, anneeFin, montantPrestation, detailPrestation, this.fileUrl);
     newReference.domaine = domaines;
-    this.referencesService.createNewReference(newReference);
+
+    if (this.refEdit.id === '') {
+      this.referencesService.createNewReference(newReference);
+    } else {
+      this.referencesService.updateReference(newReference);
+    }
     this.router.navigate(['/']);
   }
 
@@ -98,7 +119,6 @@ export class ReferenceFormComponent implements OnInit {
 
   onChangeDepartement(event: any) {
     let departement = event.target.value;
-    console.log('Departement : ' + departement);
     departement = departement.split(' - ')[0];
     this.villes = this.villesService.getVillesByDepartement(departement);
   }

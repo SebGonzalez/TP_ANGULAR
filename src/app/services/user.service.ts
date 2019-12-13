@@ -13,7 +13,8 @@ export class UserService {
 
   private typeUser: string;
   constructor(private httpClient: HttpClient) {
-    this.typeUser = 'NonConnecte';
+   // this.typeUser = 'NonConnecte';
+    this.typeUser = 'Administrateur';
   }
 
   getTypeUser() {

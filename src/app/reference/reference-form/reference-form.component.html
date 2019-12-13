@@ -12,6 +12,7 @@
         <input type="text" id="client"
                class="form-control" formControlName="client">
       </div>
+
       <div class="form-group">
         <label for="departement">Département</label>
         <select id="departement" class="form-control" (change)="onChangeDepartement($event)">
@@ -44,7 +45,7 @@
       </div>
       <div class="form-group">
         <label for="montantPrestation">Montant de la prestation</label>
-        <input type="number" id="montantPrestation"
+        <input type="text" id="montantPrestation"
                   class="form-control" formControlName="montantPrestation">
       </div>
       <div formArrayName="details">
