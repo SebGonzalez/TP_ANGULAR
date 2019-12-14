@@ -64,22 +64,12 @@ export class ReferencesService {
     const index = this.references.indexOf(ref);
     console.log('Index : ' + index);
     this.references[index] = newReference;
-    this.emitReferenceSubject();
-
+    // this.emitReferenceSubject();
     this.httpClient
-      .delete('http://localhost:3000/reference/' + newReference.id)
+      .put('http://localhost:3000/reference/' + newReference.id, newReference)
       .subscribe(
         () => {
-          this.httpClient
-            .post('http://localhost:3000/reference', newReference)
-            .subscribe(
-              () => {
-                console.log('Enregistrement terminé !');
-              },
-              (error) => {
-                console.log('Erreur ! : ' + error);
-              }
-            );
+          console.log('Enregistrement terminé !');
         },
         (error) => {
           console.log('Erreur ! : ' + error);

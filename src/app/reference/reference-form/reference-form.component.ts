@@ -30,29 +30,35 @@ export class ReferenceFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private referencesService: ReferencesService,
               private villesService: VillesService, private router: Router) {
     this.refEdit = this.router.getCurrentNavigation().extras.state as Reference;
-    this.villesService.getSingleVille(this.refEdit.idVille).then(
-      (ville: Ville) => {
-        this.villeEdit = ville;
-        console.log('Ville edit : ' + this.villeEdit.nomVille);
-        this.departementsSubscription = this.villesService.departementsSubject.subscribe(
-          (departements: Departement[]) => {
-            this.departements = departements;
-            console.log(this.departements);
-            this.departements.unshift(new Departement('', this.villeEdit.departement));
-            this.villes = this.villesService.getVillesByDepartement(this.villeEdit.departement);
-            this.villes.unshift(this.villeEdit);
+    if (this.refEdit) {
+      this.villesService.getSingleVille(this.refEdit.idVille).then(
+        (ville: Ville) => {
+          this.villeEdit = ville;
+          this.departementsSubscription = this.villesService.departementsSubject.subscribe(
+            (departements: Departement[]) => {
+              this.departements = departements;
+              this.departements.unshift(new Departement('', this.villeEdit.departement));
+              this.villes = this.villesService.getVillesByDepartement(this.villeEdit.departement);
+              this.villes.unshift(this.villeEdit);
 
-          }
-        );
-        this.villesService.emitDepartementSubject();
-      }
-    );
+            }
+          );
+          this.villesService.emitDepartementSubject();
+        }
+      );
+    }
   }
 
   ngOnInit() {
     if (!this.refEdit) {
       this.refEdit = new Reference('', '', '', '', '', '', '', [''], '');
+      this.refEdit.domaine = [];
     }
+    this.departementsSubscription = this.villesService.departementsSubject.subscribe(
+      (departements: Departement[]) => {
+        this.departements = departements;
+      });
+    this.villesService.emitDepartementSubject();
     this.villes = this.villesService.getVillesByDepartement('01');
     this.initForm();
   }
@@ -80,7 +86,11 @@ export class ReferenceFormComponent implements OnInit {
     }
     const mission = this.referenceForm.get('mission').value;
     const client = this.referenceForm.get('client').value;
-    const idVille = this.referenceForm.get('ville').value;
+    let idVille = this.referenceForm.get('ville').value;
+    if (idVille === '' && this.refEdit.idVille !== '') {
+      idVille = this.refEdit.idVille;
+    }
+    console.log('IdVille : ' + idVille);
     const anneeDebut = this.referenceForm.get('anneeDebut').value;
     const anneeFin = this.referenceForm.get('anneeFin').value;
     const montantPrestation = this.referenceForm.get('montantPrestation').value;
