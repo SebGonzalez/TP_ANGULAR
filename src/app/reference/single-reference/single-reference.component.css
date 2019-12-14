@@ -45,3 +45,8 @@
 .contour{
   border: 10px solid #e6e6e6;
 }
+
+@font-face {
+  font-family: "Arial";
+  src: url("../../../assets/arial.ttf") format("truetype");
+}

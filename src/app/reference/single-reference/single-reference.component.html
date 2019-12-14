@@ -17,8 +17,8 @@
       <p class="orange">Dates</p>
       <p>{{ reference.anneeDebut }} - {{ reference.anneeFin}}</p>
       <br>
-      <p class="orange up">Montant des prestations</p>
-      <p *ngIf="userService.getTypeUser() != 'NonConnecte'">{{ reference.montantPrestation }}</p>
+      <p class="orange up" *ngIf="userService.getTypeUser() != 'NonConnecte'">Montant des prestations</p>
+      <p *ngIf="userService.getTypeUser() != 'NonConnecte'">{{ reference.montantPrestation }} €</p>
     </div>
   </div>
   <div class="container">

@@ -6,11 +6,11 @@ import {VillesService} from '../../services/villes.service';
 import {Ville} from '../../models/ville.model';
 import {UserService} from '../../services/user.service';
 
-import { encodeBase64 } from '@progress/kendo-file-saver';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { encodeBase64 } from '@progress/kendo-file-saver';
 
 
 @NgModule({
