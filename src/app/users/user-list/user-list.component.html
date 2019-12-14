@@ -1,17 +1,20 @@
 <div class="row">
   <div class="col-xs-12">
-    <h2>Listes utilisateurs :</h2>
+    <p><img class="picture" src="../../../assets/users.jpg"/></p>
+    <h2 class="blue text-center">Listes utilisateurs</h2>
 
-    <button (click)="onCreateUser()">Créer un utilisateur</button>
-    <div class="list-group"
-        class="list-group-item"
+    <button class="btn btn-primary btn-lg active bouton" (click)="onCreateUser()">Création utilisateur</button>
+    <div class="list-group list-group-item bas text-center"
         *ngFor="let user of users; let i = index">
         <h3 class="list-group-item-heading">
           {{ user.mail }}
         </h3>
-        <p class="list-group-item-text">{{ user.id }}</p>
-        <p class="list-group-item-text">{{ user.type }}</p>
-        <button (click)="onEditUser(i)">Edition</button>
+        <p class="list-group-item-text"> ID : {{ user.id }}</p>
+        <p class="list-group-item-text">Rôle : {{ user.type }}</p>
+        <button class="bouton-edit" (click)="onEditUser(i)">Edition</button>
     </div>
   </div>
 </div>
+<br>
+<br>
+
