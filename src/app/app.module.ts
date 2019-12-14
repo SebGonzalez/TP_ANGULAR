@@ -28,6 +28,7 @@ const appRoutes: Routes = [
   { path: 'reference/new', component: ReferenceFormComponent},
   { path: 'reference/edit', component: ReferenceFormComponent},
   { path: 'users', component: UserListComponent},
+  { path: 'user/create', component: UserFormComponent},
   { path: '', redirectTo: 'references', pathMatch: 'full' },
 ];
 

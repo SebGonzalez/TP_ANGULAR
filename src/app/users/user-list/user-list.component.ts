@@ -24,7 +24,11 @@ export class UserListComponent implements OnInit {
     this.usersService.emitReferenceSubject();
   }
 
-  onViewUser(id: number) {
-    this.router.navigate(['/user', 'view', id]);
+  onEditUser(id: number) {
+    this.router.navigate(['/user', 'edit', id]);
+  }
+
+  onCreateUser() {
+    this.router.navigate(['/user/create']);
   }
 }

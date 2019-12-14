@@ -1,17 +1,17 @@
 <div class="row">
   <div class="col-xs-12">
     <h2>Listes utilisateurs :</h2>
-    <div class="list-group">
-      <button
+
+    <button (click)="onCreateUser()">Créer un utilisateur</button>
+    <div class="list-group"
         class="list-group-item"
-        *ngFor="let user of users; let i = index"
-        (click)="onViewUser(i)">
+        *ngFor="let user of users; let i = index">
         <h3 class="list-group-item-heading">
           {{ user.mail }}
         </h3>
         <p class="list-group-item-text">{{ user.id }}</p>
         <p class="list-group-item-text">{{ user.type }}</p>
-      </button>
+        <button (click)="onEditUser(i)">Edition</button>
     </div>
   </div>
 </div>

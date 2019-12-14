@@ -3,6 +3,13 @@ import {Subject} from 'rxjs/Subject';
 import {HttpClient} from '@angular/common/http';
 import {User} from '../models/user.model';
 
+export enum TypeUser {
+  ADMIN= 'Administrateur',
+  CHEF= 'Chef',
+  SALARIE= 'Salarié',
+  NONCONNECTE= 'NonConnectee'
+}
+
 @Injectable({
   providedIn: 'root'
 })
