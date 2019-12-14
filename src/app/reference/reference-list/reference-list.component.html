@@ -1,16 +1,27 @@
-<div class="row">
-  <div class="col-xs-12">
-    <h2 class="text-center blue justify-content-center">Listes réferences </h2>
-    <div class="list-group">
-      <button
-        class="list-group-item"
-        *ngFor="let ref of references; let i = index"
-        (click)="onViewReference(i)">
-        <h3 class="list-group-item-heading">
-          {{ ref.mission }}
-        </h3>
-        <p class="list-group-item-text">{{ ref.detailPrestation }}</p>
-      </button>
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-xs-12">
+      <h2 class="text-center blue justify-content-center presentation">Accueil </h2>
+      <p class="text-center bold titre"> Bienvenue sur le site web de la XYZ ingénieurie française pluridisciplinaire depuis 1937.</p>
+      <img src="../../../assets/img-accueil.jpg" class="picture centre"><br>
+      <p class="text-center">À partir de cette page vous allez pouvoir accéder à toutes les références commerciales de notre site.</p>
+      <p class="text-center">Vous pouvez vous connecter directement à votre compte personnel via l'onglet <span class="bold">"Connexion"</span>.</p><br>
+      <p class="text-center">Nous vous souhaitons une bonne navigation !</p>
+      <br>
+      <h2 class="text-center blue justify-content-center">Listes réferences </h2>
+      <div class="list-group">
+        <button
+          class="list-group-item"
+          *ngFor="let ref of references; let i = index"
+          (click)="onViewReference(i)">
+          <h3 class="list-group-item-heading">
+            {{ ref.mission }}
+          </h3>
+          <p class="list-group-item-text">{{ ref.detailPrestation }}</p>
+        </button>
+      </div>
     </div>
   </div>
+
 </div>
