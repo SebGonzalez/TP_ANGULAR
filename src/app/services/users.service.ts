@@ -33,7 +33,7 @@ export class UsersService {
       );
   }
 
-  getSingleReference(id: number) {
+  getSingleUser(id: number) {
     return this.users[id];
   }
 }

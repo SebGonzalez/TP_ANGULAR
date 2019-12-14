@@ -12,9 +12,10 @@
         <input type="text" id="client"
                class="form-control" formControlName="client">
       </div>
+
       <div class="form-group">
         <label for="departement">Département</label>
-        <select id="departement" class="form-control" formControlName="departement" (change)="onChangeDepartement($event)">
+        <select id="departement" class="form-control" (change)="onChangeDepartement($event)">
           <option *ngFor="let departement of departements">
             {{departement.id}} - {{departement.nomDep}}
           </option>
@@ -24,7 +25,7 @@
       <div class="form-group">
         <label for="ville">Ville</label>
         <select id="ville" class="form-control" formControlName="ville">
-          <option *ngFor="let ville of villes">
+          <option [value]="ville.id" *ngFor="let ville of villes">
             {{ville.nomVille}}
           </option>
         </select>
@@ -44,16 +45,33 @@
       </div>
       <div class="form-group">
         <label for="montantPrestation">Montant de la prestation</label>
-        <input type="number" id="montantPrestation"
+        <input type="text" id="montantPrestation"
                   class="form-control" formControlName="montantPrestation">
       </div>
-      <div class="form-group">
-        <label for="detailPrestation">Détail de la prestation</label>
-        <textarea id="detailPrestation"
-                  class="form-control" formControlName="detailPrestation">
-        </textarea>
+      <div formArrayName="details">
+        <p>Détail de la prestation</p>
+        <div class="form-group" *ngFor="let detailsControl of getDetails().controls; let i = index">
+          <input type="text" class="form-control" [formControlName]="i">
+        </div>
+        <button type="button" class="btn btn-success" (click)="onAddDetail()">+</button>
       </div>
-      <button class="btn btn-success" [disabled]="referenceForm.invalid"
+
+      <div formArrayName="domaines">
+        <p>Domaines techniques</p>
+        <div class="form-group" *ngFor="let domainesControl of getDomaines().controls; let i = index">
+          <input type="text" class="form-control" [formControlName]="i">
+        </div>
+        <button type="button" class="btn btn-success" (click)="onAddDomaine()">+</button>
+      </div>
+
+      <div class="form-group">
+        <h4>Ajouter une photo</h4>
+        <input type="file" (change)="detectFiles($event)"
+               class="form-control" accept="image/*">
+        <p class="text-success" *ngIf="fileUploaded">Fichier chargé !</p>
+      </div>
+
+      <button class="btn btn-success" [disabled]="referenceForm.invalid || fileIsUploading"
               type="submit">Enregistrer
       </button>
 
