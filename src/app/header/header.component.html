@@ -2,16 +2,24 @@
   <div class="container-fluid">
     <ul class="nav navbar-nav">
       <li routerLinkActive="active">
-      <a routerLink="/">Références</a>
-    </li>
+        <a routerLink="/">Références</a>
+      </li>
       <li routerLinkActive="active" *ngIf="userService.getTypeUser() == 'Administrateur'">
         <a routerLink="/users">Utilisateurs</a>
       </li>
-      <li routerLinkActive="active" *ngIf="userService.getTypeUser() == 'Administrateur' || userService.getTypeUser() == 'Chef'">
+      <li routerLinkActive="active"
+          *ngIf="userService.getTypeUser() == 'Administrateur' || userService.getTypeUser() == 'Chef'">
         <a routerLink="/reference/new">Nouvelle référence</a>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
+      <li routerLinkActive="active">
+        <form class="form-inline waves-light recadrer" mdbWavesEffect>
+          <div class="md-form mt-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Rechercher" name="Rechercher">
+          </div>
+        </form>
+      </li>
       <li routerLinkActive="active" *ngIf="userService.getTypeUser() == 'NonConnecte'">
         <a routerLink="/auth">Connexion</a>
       </li>
