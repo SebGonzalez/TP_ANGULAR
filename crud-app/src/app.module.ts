@@ -16,7 +16,15 @@ import { VilleModule } from './ville/ville.module';
       synchronize: true,
    }), 
    
-  VilleModule,],
+  VilleModule,
+  TypeOrmModule.forRoot({
+    type: 'sqlite',
+    database: 'db',
+    entities: [__dirname + '/**/*.entity{.ts,.js}'],
+    synchronize: true,
+  }), 
+
+  ],
 
   controllers: [AppController],
   providers: [AppService],

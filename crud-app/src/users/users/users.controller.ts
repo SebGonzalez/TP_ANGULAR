@@ -1,7 +1,7 @@
 import { Controller, Get, Query } from '@nestjs/common';
+import { Post, Put, Delete, Body, Param } from  '@nestjs/common';
 import { User } from '../users.entity';
 import { UsersService } from '../users.service';
-import { Post, Put, Delete, Body, Param } from  '@nestjs/common';
 
 
 @Controller('users')
@@ -14,14 +14,14 @@ export class UsersController {
     // }  
 
     @Get()
-    findOne(@Query() query) {
+    find(@Query() query) {
       if(query.mail == undefined){
         return this.usersService.findAll();
       }
       return this.usersService.findByEmail(query.mail);
     }
 
-    @Post('create')
+    @Post()
     async create(@Body() userData: User): Promise<any> {
       return this.usersService.create(userData);
     }  
