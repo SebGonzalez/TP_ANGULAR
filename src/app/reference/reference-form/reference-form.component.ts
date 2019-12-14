@@ -40,7 +40,10 @@ export class ReferenceFormComponent implements OnInit {
               this.departements.unshift(new Departement('', this.villeEdit.departement));
               this.villes = this.villesService.getVillesByDepartement(this.villeEdit.departement);
               this.villes.unshift(this.villeEdit);
-
+              this.fileUrl = this.refEdit.img;
+              if (this.fileUrl !== '') {
+                this.fileUploaded = true;
+              }
             }
           );
           this.villesService.emitDepartementSubject();
