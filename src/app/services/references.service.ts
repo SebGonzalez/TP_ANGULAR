@@ -58,11 +58,8 @@ export class ReferencesService {
   }
 
   updateReference(newReference: Reference) {
-    console.log('ID : ' + +newReference.id);
     const ref = this.getSingleReference(+newReference.id);
-    console.log('Ref : ' + ref);
     const index = this.references.indexOf(ref);
-    console.log('Index : ' + index);
     this.references[index] = newReference;
     // this.emitReferenceSubject();
     this.httpClient
