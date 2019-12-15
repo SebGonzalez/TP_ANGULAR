@@ -8,7 +8,7 @@ export enum TypeUser {
   ADMIN= 'Administrateur',
   CHEF= 'Chef',
   SALARIE= 'Salarié',
-  NONCONNECTE= 'NonConnectee'
+  NONCONNECTE= 'NonConnecte'
 }
 
 @Injectable({

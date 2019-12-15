@@ -36,8 +36,8 @@
     <button *ngIf="userService.getTypeUser() == 'Chef' || userService.getTypeUser() == 'Administrateur'"
             class="btn btn-default" (click)="onEdition()">Edition
     </button>
-    <button *ngIf="userService.getTypeUser() == 'Chef' || userService.getTypeUser() == 'Administrateur'"
-            class="btn btn-default" kendo-button (click)="pdf.saveAs('reference.pdf')">Exporter en PDF
+    <button class="btn btn-default" kendo-button (click)="pdf.saveAs('reference.pdf')">
+      Exporter en PDF
     </button>
     <button class="btn btn-default" (click)="onBack()">Retour</button>
   </div>
