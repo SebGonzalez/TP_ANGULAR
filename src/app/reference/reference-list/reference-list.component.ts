@@ -16,19 +16,23 @@ export class ReferenceListComponent implements OnInit {
 
   researchForm: FormGroup;
   selectType = ['Client', 'Ville', 'Année Début', 'Année Fin', 'Domaine'];
+  refFiltred = false;
   constructor(private referencesService: ReferencesService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.getAllReferences();
+
+    this.initForm();
+  }
+
+  getAllReferences() {
     this.referencesSubscription = this.referencesService.referencesSubject.subscribe(
       (references: Reference[]) => {
         this.references = references;
       }
     );
     this.referencesService.emitReferenceSubject();
-
-    this.initForm();
   }
-
   initForm() {
       this.researchForm = this.formBuilder.group({
         search: ['', Validators.required],
@@ -38,14 +42,21 @@ export class ReferenceListComponent implements OnInit {
   }
 
   onSubmit() {
+    this.refFiltred = true;
     const search = this.researchForm.get('search').value;
     const type = this.researchForm.get('type').value;
 
+    this.references = this.referencesService.search(search, type);
     console.log(search + ' ' + type);
   }
 
   onViewReference(id: number) {
     this.router.navigate(['/reference', 'view', id]);
+  }
+
+  onRemovedFilter() {
+    this.getAllReferences();
+    this.refFiltred = false;
   }
 
 }

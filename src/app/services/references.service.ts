@@ -94,4 +94,8 @@ export class ReferencesService {
       }
     );
   }
+
+  search(search: string, type: string) {
+    return [];
+  }
 }
