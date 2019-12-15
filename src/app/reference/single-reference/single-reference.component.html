@@ -1,42 +1,44 @@
 <div class="container-fluid contour">
   <kendo-pdf-export #pdf paperSize="A4" margin="2cm">
-  <div class="container-fluid">
-    <div class="blue">
-      <h1>{{ reference.mission }}</h1>
-      <h5 class="up">Client : {{ reference.client }}</h5>
-    </div>
+    <div class="container-fluid">
+      <div class="blue">
+        <h1>{{ reference.mission }}</h1>
+        <h5 class="up">Client : {{ reference.client }}</h5>
+      </div>
 
-    <div class="row left">
-      <p><img class="pointeur" src="../../../assets/pointeur.jpg"/> Nom de la ville : {{ville.nomVille}}
-        ({{ville.departement}})</p>
-      <img class="picture up"  *ngIf="reference.img" [src]="reference.img"/>
+      <div class="row left">
+        <p><img class="pointeur" src="../../../assets/pointeur.jpg"/> Nom de la ville : {{ville.nomVille}}
+          ({{ville.departement}})</p>
+        <img class="picture up" *ngIf="reference.img != null" [src]="reference.img"/>
+        <img class="picture up" *ngIf="reference.img == null" src="../../../assets/img-type.jpg"/>
 
-    </div>
+      </div>
 
-    <div class="row right up">
-      <p class="orange">Dates</p>
-      <p>{{ reference.anneeDebut }} - {{ reference.anneeFin}}</p>
-      <br>
-      <p class="orange up" *ngIf="userService.getTypeUser() != 'NonConnecte'">Montant des prestations</p>
-      <p *ngIf="userService.getTypeUser() != 'NonConnecte'">{{ reference.montantPrestation }} €</p>
+      <div class="row right up">
+        <p class="orange">Dates</p>
+        <p>{{ reference.anneeDebut }} - {{ reference.anneeFin}}</p>
+        <br>
+        <p class="orange up" *ngIf="userService.getTypeUser() != 'NonConnecte'">Montant des prestations</p>
+        <p *ngIf="userService.getTypeUser() != 'NonConnecte'">{{ reference.montantPrestation }} €</p>
+      </div>
     </div>
-  </div>
-  <div class="container">
+    <div class="container">
 
-    <div class="left">
-      <h4 class="mission-color">Missions détaillées : </h4>
-      <p>{{reference.detailPrestation}}</p>
+      <div class="left">
+        <h4 class="mission-color">Missions détaillées : </h4>
+        <ul>
+          <li *ngFor="let presta of reference.detailPrestation">{{ presta }}</li>
+        </ul>
+      </div>
     </div>
-  </div>
   </kendo-pdf-export>
-
 
   <div class=" up down text-center">
     <button *ngIf="userService.getTypeUser() == 'Chef' || userService.getTypeUser() == 'Administrateur'"
             class="btn btn-default" (click)="onEdition()">Edition
     </button>
-    <button *ngIf="userService.getTypeUser() == 'Chef' || userService.getTypeUser() == 'Administrateur'"
-            class="btn btn-default" kendo-button (click)="pdf.saveAs('reference.pdf')">Exporter en PDF
+    <button class="btn btn-default" kendo-button (click)="pdf.saveAs('reference.pdf')">
+      Exporter en PDF
     </button>
     <button class="btn btn-default" (click)="onBack()">Retour</button>
   </div>

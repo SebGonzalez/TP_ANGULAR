@@ -2,19 +2,19 @@ import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import {HttpClient} from '@angular/common/http';
 import {User} from '../models/user.model';
+import {Observable} from 'rxjs';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
+import {TypeUser} from './users.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class UserService {
+export class UserService implements CanActivate {
 
-
-
-  private typeUser: string;
-  constructor(private httpClient: HttpClient) {
-   // this.typeUser = 'NonConnecte';
-    this.typeUser = 'Administrateur';
+  typeUser: string;
+  constructor(private httpClient: HttpClient, private router: Router) {
+    this.typeUser = TypeUser.NONCONNECTE;
   }
 
   getTypeUser() {
@@ -22,7 +22,8 @@ export class UserService {
   }
 
   signOutUser() {
-    this.typeUser = 'NonConnecte';
+    this.typeUser = TypeUser.NONCONNECTE;
+    firebase.auth().signOut();
   }
 
   signInUser(email: string, password: string) {
@@ -43,17 +44,49 @@ export class UserService {
 
   setTypeUser(email: string) {
     const url  = 'http://localhost:3000/users?mail=' + email;
-    console.log('URL : ' + url);
     this.httpClient
       .get<User[]>(url)
       .subscribe(
         (response) => {
-          console.log('Reponse : ' + response + ' yeah ' + response[0]);
           this.typeUser = response[0].type;
         },
         (error) => {
           console.log('Erreur ! : ' + error);
         }
       );
+  }
+
+  // tslint:disable-next-line:max-line-length
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    console.log(state.url + ' ' + state);
+
+    return new Promise(
+      (resolve, reject) => {
+        firebase.auth().onAuthStateChanged(
+          (user) => {
+            if (user) {
+              if (state.url.includes('reference')) {
+                if (this.typeUser === TypeUser.ADMIN || this.typeUser === TypeUser.CHEF) {
+                  resolve(true);
+                } else {
+                  this.router.navigate(['/auth']);
+                  resolve(false);
+                }
+              } else if (state.url.includes('user')) {
+                if (this.typeUser === TypeUser.ADMIN) {
+                  resolve(true);
+                } else {
+                  this.router.navigate(['/auth']);
+                  resolve(false);
+                }
+              }
+            } else {
+              this.router.navigate(['/auth']);
+              resolve(false);
+            }
+          }
+        );
+      }
+    );
   }
 }

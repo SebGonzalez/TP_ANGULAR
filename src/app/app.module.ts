@@ -20,15 +20,17 @@ import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {SingleReferenceComponent} from './reference/single-reference/single-reference.component';
 import {UsersService} from './services/users.service';
+import { FooterComponent } from './footer/footer.component';
 
 const appRoutes: Routes = [
   { path: 'auth', component: AuthComponent },
   { path: 'references', component: ReferenceListComponent },
   { path: 'reference/view/:id', component: SingleReferenceComponent},
-  { path: 'reference/new', component: ReferenceFormComponent},
-  { path: 'reference/edit', component: ReferenceFormComponent},
-  { path: 'users', component: UserListComponent},
-  { path: 'user/create', component: UserFormComponent},
+  { path: 'reference/new', canActivate: [UserService], component: ReferenceFormComponent},
+  { path: 'reference/edit', canActivate: [UserService], component: ReferenceFormComponent},
+  { path: 'users', canActivate: [UserService], component: UserListComponent},
+  { path: 'user/create', canActivate: [UserService], component: UserFormComponent},
+  { path: 'user/edit/:id', canActivate: [UserService], component: UserFormComponent},
   { path: '', redirectTo: 'references', pathMatch: 'full' },
 ];
 
@@ -41,7 +43,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     SingleReferenceComponent,
     ReferenceListComponent,
-    UserListComponent
+    UserListComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
