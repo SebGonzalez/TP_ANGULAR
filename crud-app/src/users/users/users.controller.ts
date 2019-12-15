@@ -26,7 +26,7 @@ export class UsersController {
       return this.usersService.create(userData);
     }  
 
-    @Put(':id/update')
+    @Put(':id')
     async update(@Param('id') id, @Body() userData: User): Promise<any> {
         userData.id = Number(id);
         console.log('Update #' + userData.id)
