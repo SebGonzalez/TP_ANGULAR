@@ -9,7 +9,8 @@
       <div class="row left">
         <p><img class="pointeur" src="../../../assets/pointeur.jpg"/> Nom de la ville : {{ville.nomVille}}
           ({{ville.departement}})</p>
-        <img class="picture up" *ngIf="reference.img" [src]="reference.img"/>
+        <img class="picture up" *ngIf="reference.img != null" [src]="reference.img"/>
+        <img class="picture up" *ngIf="reference.img == null" src="../../../assets/img-type.jpg"/>
 
       </div>
 
