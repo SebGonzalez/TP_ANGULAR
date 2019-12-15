@@ -13,13 +13,6 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li routerLinkActive="active">
-        <form class="form-inline waves-light recadrer" mdbWavesEffect>
-          <div class="md-form mt-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Rechercher" name="Rechercher">
-          </div>
-        </form>
-      </li>
       <li routerLinkActive="active" *ngIf="userService.getTypeUser() == 'NonConnecte'">
         <a routerLink="/auth">Connexion</a>
       </li>

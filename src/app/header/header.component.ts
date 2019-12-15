@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
     firebase.auth().onAuthStateChanged(
       (user) => {
         if (!user) {
-          this.userService.setTypeUser(TypeUser.NONCONNECTE);
+          this.userService.typeUser = TypeUser.NONCONNECTE;
         }
       }
     );

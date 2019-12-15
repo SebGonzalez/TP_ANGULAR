@@ -12,7 +12,7 @@ import {TypeUser} from './users.service';
 
 export class UserService implements CanActivate {
 
-  private typeUser: string;
+  typeUser: string;
   constructor(private httpClient: HttpClient, private router: Router) {
     this.typeUser = TypeUser.NONCONNECTE;
   }
@@ -44,12 +44,10 @@ export class UserService implements CanActivate {
 
   setTypeUser(email: string) {
     const url  = 'http://localhost:3000/users?mail=' + email;
-    console.log('URL : ' + url);
     this.httpClient
       .get<User[]>(url)
       .subscribe(
         (response) => {
-          console.log('Reponse : ' + response + ' yeah ' + response[0]);
           this.typeUser = response[0].type;
         },
         (error) => {
