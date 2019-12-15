@@ -20,6 +20,7 @@ import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {SingleReferenceComponent} from './reference/single-reference/single-reference.component';
 import {UsersService} from './services/users.service';
+import { FooterComponent } from './footer/footer.component';
 
 const appRoutes: Routes = [
   { path: 'auth', component: AuthComponent },
@@ -42,7 +43,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     SingleReferenceComponent,
     ReferenceListComponent,
-    UserListComponent
+    UserListComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
