@@ -95,7 +95,70 @@ export class ReferencesService {
     );
   }
 
-  search(search: string, type: string) {
-    return [];
+  getFilterReference(search: string, type: string) {
+    if (type === 'Client') {
+      return this.getFilterReferenceByClient(search);
+    } else if (type === 'Ville') {
+      return this.getFilterReferenceByVille(search);
+    } else if (type === 'Année Début') {
+      return this.getFilterReferenceByBeginYear(search);
+    } else if (type === 'Année Fin') {
+      return this.getFilterReferenceByEndYear(search);
+    } else if (type === 'Domaine') {
+      return this.getFilterReferenceByDomain(search);
+    }
   }
+
+  getFilterReferenceByClient(search: string) {
+    const referenceFilter = [];
+    for (const ref of this.references) {
+      if (ref.client === search) {
+        referenceFilter.push(ref);
+      }
+    }
+    return referenceFilter;
+  }
+
+  getFilterReferenceByVille(search: string) {
+    const referenceFilter = [];
+    for (const ref of this.references) {
+      if (ref.idVille === search) {
+        referenceFilter.push(ref);
+      }
+    }
+    return referenceFilter;
+  }
+
+  getFilterReferenceByBeginYear(search: string) {
+    const referenceFilter = [];
+    for (const ref of this.references) {
+      if (ref.anneeDebut === search) {
+        referenceFilter.push(ref);
+      }
+    }
+    return referenceFilter;
+  }
+
+  getFilterReferenceByEndYear(search: string) {
+    const referenceFilter = [];
+    for (const ref of this.references) {
+      if (ref.anneeFin === search) {
+        referenceFilter.push(ref);
+      }
+    }
+    return referenceFilter;
+  }
+
+  getFilterReferenceByDomain(search: string) {
+    const referenceFilter = [];
+    for (const ref of this.references) {
+      for (const dom of ref.domaine) {
+        if (dom === search) {
+          referenceFilter.push(ref);
+        }
+      }
+    }
+    return referenceFilter;
+  }
+
 }
