@@ -8,7 +8,6 @@ import { ReferenceFormComponent } from './reference/reference-form/reference-for
 import { UserFormComponent } from './users/user-form/user-form.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import {AuthGuardService} from './services/auth-guard.service';
 import {ReferencesService} from './services/references.service';
 import {UserService} from './services/user.service';
 import {RouterModule, Routes} from '@angular/router';
@@ -55,7 +54,7 @@ const appRoutes: Routes = [
     PDFExportModule,
     BrowserAnimationsModule
   ],
-  providers: [AuthGuardService, ReferencesService, UserService, UsersService, VillesService],
+  providers: [ReferencesService, UserService, UsersService, VillesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

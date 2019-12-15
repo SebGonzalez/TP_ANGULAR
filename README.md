@@ -43,19 +43,69 @@ Se placer dans la racine du projet :
 
 	<npm install>
 
-Pour pouvoir lancer "Back-end mock serveur" : 
+Installation du "Back-end mock" : 
 
 	<sudo npm install -g json-server>
 
-Pour lancer la base de données : 
+Pour lancer le "Back-end mock" : 
 
 Il faut ouvrir une invite de commande, se déplacer à la racine du fichier puis exécuter :
 
 	<json-server --watch Database/bd.json>
 
-Lancer une autre invite de commande en paralléle, se déplacer à la racine du fichier puis exécuter : 
+Lancer un autre invite de commande en paralléle, se déplacer à la racine du fichier puis exécuter afin de lancer le projet angular : 
 
 	<ng serve>
+
+-------------------------------Utilisation du projet sur votre machine-------------------------------
+
+Le site web est accessible à l'url :
+
+http://localhost:4200
+
+Le back-end mock est accessible à l'url :
+
+http://localhost:3000
+
+Les différentes ressources sont disponibles aux adresses suivantes :
+
+  Resources
+  http://localhost:3000/users
+  http://localhost:3000/reference
+  http://localhost:3000/departement
+  http://localhost:3000/ville
+
+La base de donnée stock ainsi la liste des utilisateurs (seulement le mail et le type), les références commerciales, la liste des départements et villes de france.
+
+Le mot de passe des utilisateur et l'authentification est gérer à l'aide de l'API firebase.
+Trois compte sont disponible :
+	- chef@hotmail.fr azerty (compte chef de projet)
+	- admin@hotmail.fr azerty (compte administrateur)
+	- salarie@hotmail.fr azerty (compte salarié)
+Les images des références commerciales sont également stocké et géré à l'aide de l'API storage de firebase
+
+Les images du wireframe sont disponible dans le dossier Wireframe à la racine du projet
+
+
+-------------------------------Architecture du projet ---------------------------------------------
+
+Plusieurs services sont utilisés (dossier services):
+	- ReferencesService (pour la gestion des références)
+	- UserService (pour la gestion de l'utilisateur courant, connexion etc...)
+	- UsersService (pour la gestion de l'ensemble des utilisateurs)
+	- VillesService (pour la gestion des villes)
+
+Deux component sont utilisés pour le menu et le footer afin de les appliquer à chaque page.
+
+Trois component sont utilisés pour les références :
+ - ReferenceListComponent pour afficher la liste des références.
+ - SingleReferenceComponent pour afficher les détails d'une référence. Les informations privées sont affichées seulement si l'utilisateur est connecté (dialogue avec le service UserService).
+ - ReferenceFormComponent pour la création ou l'édition d'une référence.
+
+ Pour les utilisateurs deux component sont utilisés :
+ - UserListComponent pour afficher la liste des utilisateurs
+ - UserFormComponent pour la création ou l'édition d'un utilisateur.
+
 
 --------------------------------------------Documentation-----------------------------------------
 
