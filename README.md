@@ -107,6 +107,11 @@ Trois component sont utilisés pour les références :
  - UserFormComponent pour la création ou l'édition d'un utilisateur.
 
 
+--------------------------------------------Back-end nestjs---------------------------------------
+
+La partie back-end a été également réalisé à l'aide du framework nest-js mais n'est pas complètement fonctionnel.
+Elle est disponible dans le dossier "crud-app".
+
 --------------------------------------------Documentation-----------------------------------------
 
 Angular  : https://github.com/johnpapa/heroes-angular
