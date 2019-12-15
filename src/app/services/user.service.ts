@@ -9,8 +9,6 @@ import {User} from '../models/user.model';
 
 export class UserService {
 
-
-
   private typeUser: string;
   constructor(private httpClient: HttpClient) {
    // this.typeUser = 'NonConnecte';

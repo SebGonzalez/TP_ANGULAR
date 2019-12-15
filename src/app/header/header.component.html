@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <ul class="nav navbar-nav">
       <li routerLinkActive="active">
-        <a routerLink="/">Références</a>
+        <a routerLink="/references">Références</a>
       </li>
       <li routerLinkActive="active" *ngIf="userService.getTypeUser() == 'Administrateur'">
         <a routerLink="/users">Utilisateurs</a>

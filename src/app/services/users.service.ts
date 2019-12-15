@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Subject} from 'rxjs/Subject';
 import {HttpClient} from '@angular/common/http';
 import {User} from '../models/user.model';
+import * as firebase from 'firebase';
 
 export enum TypeUser {
   ADMIN= 'Administrateur',
@@ -21,7 +22,7 @@ export class UsersService {
     this.getUsersFromBack();
   }
 
-  emitReferenceSubject() {
+  emitUsersSubject() {
     this.usersSubject.next(this.users);
   }
 
@@ -32,7 +33,7 @@ export class UsersService {
       .subscribe(
         (response) => {
           this.users = response;
-          this.emitReferenceSubject();
+          this.emitUsersSubject();
         },
         (error) => {
           console.log('Erreur ! : ' + error);
@@ -42,5 +43,55 @@ export class UsersService {
 
   getSingleUser(id: number) {
     return this.users[id];
+  }
+
+  getNewIdForUtilisateur() {
+    return +this.users[this.users.length - 1].id + 1;
+  }
+
+  createUtilisateur(email: string, password: string, type: string) {
+    const user = new User('' + this.getNewIdForUtilisateur(), email, type);
+    this.users.push(user);
+    this.emitUsersSubject();
+
+    this.httpClient
+      .post('http://localhost:3000/users', user)
+      .subscribe(
+        () => {
+          console.log('Enregistrement terminé !');
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
+
+    return new Promise(
+      (resolve, reject) => {
+        firebase.auth().createUserWithEmailAndPassword(email, password).then(
+          () => {
+            resolve();
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+      }
+    );
+  }
+
+  updateUtilisateur(id: string, mail: string, type: string) {
+    const user = new User(id, mail, type);
+    this.users[+id] = user;
+    this.emitUsersSubject();
+    this.httpClient
+      .put('http://localhost:3000/users/' + id, user)
+      .subscribe(
+        () => {
+          console.log('Enregistrement terminé !');
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
   }
 }
