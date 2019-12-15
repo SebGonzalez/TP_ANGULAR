@@ -33,15 +33,19 @@
 
       <div class="form-group">
         <label for="anneeDebut">Année de début</label>
-        <textarea id="anneeDebut"
-                  class="form-control" formControlName="anneeDebut">
-        </textarea>
+        <select id="anneeDebut" class="form-control" formControlName="anneeDebut">
+          <option [value]="year" *ngFor="let year of years">
+            {{year}}
+          </option>
+        </select>
       </div>
       <div class="form-group">
         <label for="anneeFin">Année de fin</label>
-        <textarea id="anneeFin"
-                  class="form-control" formControlName="anneeFin">
-        </textarea>
+        <select id="anneeFin" class="form-control" formControlName="anneeFin">
+          <option [value]="year" *ngFor="let year of years">
+            {{year}}
+          </option>
+        </select>
       </div>
       <div class="form-group">
         <label for="montantPrestation">Montant de la prestation</label>

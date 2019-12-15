@@ -26,6 +26,7 @@ export class ReferenceFormComponent implements OnInit {
 
   departements: Departement[] = [];
   departementsSubscription: Subscription;
+  years = [];
 
   constructor(private formBuilder: FormBuilder, private referencesService: ReferencesService,
               private villesService: VillesService, private router: Router) {
@@ -67,6 +68,9 @@ export class ReferenceFormComponent implements OnInit {
   }
 
   initForm() {
+    for (let i = 0; i <= (2019 - 1937); i++) {
+      this.years.push(i + 1937);
+    }
     this.referenceForm = this.formBuilder.group({
       mission: [this.refEdit.mission, Validators.required],
       client: [this.refEdit.client, Validators.required],
