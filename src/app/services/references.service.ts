@@ -3,6 +3,8 @@ import {Reference} from '../models/reference.model';
 import {HttpClient} from '@angular/common/http';
 import { Subject } from 'rxjs/Subject';
 import * as firebase from 'firebase';
+import {VillesService} from './villes.service';
+import {Ville} from '../models/ville.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,7 @@ export class ReferencesService {
   references: Reference[] = [];
   referencesSubject = new Subject<Reference[]>();
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private villesService: VillesService) {
     this.getReferencesFromBack();
   }
 
@@ -121,11 +123,17 @@ export class ReferencesService {
 
   getFilterReferenceByVille(search: string) {
     const referenceFilter = [];
-    for (const ref of this.references) {
-      if (ref.idVille === search) {
-        referenceFilter.push(ref);
+    this.villesService.getSingleVilleByName(search).then(
+      (ville: Ville) => {
+        for (const ref of this.references) {
+          console.log(ref.idVille + ' oui ' + ville.id);
+          if (ref.idVille === ville.id) {
+            console.log(ref.idVille + ' yeah ' + ville.id);
+            referenceFilter.push(ref);
+          }
+        }
       }
-    }
+    );
     return referenceFilter;
   }
 

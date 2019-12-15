@@ -76,6 +76,25 @@ export class VillesService {
     );
   }
 
+  getSingleVilleByName(search: string) {
+    const url  = 'http://localhost:3000/ville?nomVille=' + search;
+    console.log(url);
+    return new Promise(
+      (resolve, reject) => {
+        this.httpClient
+          .get<Ville[]>(url)
+          .subscribe(
+            (response) => {
+              resolve(response[0]);
+            },
+            (error) => {
+              reject(error);
+            }
+          );
+      }
+    );
+  }
+
   getVillesByDepartement(departement: string) {
     const filteredCities = [];
 

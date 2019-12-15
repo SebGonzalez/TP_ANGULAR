@@ -46,8 +46,7 @@ export class ReferenceListComponent implements OnInit {
     const search = this.researchForm.get('search').value;
     const type = this.researchForm.get('type').value;
 
-    this.references = this.referencesService.getFilterReference(search, type);
-    console.log(search + ' ' + type);
+    this.references = this.referencesService.getFilterReference(search, type) as Reference[];
   }
 
   onViewReference(id: number) {
