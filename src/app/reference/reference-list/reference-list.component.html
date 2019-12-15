@@ -10,6 +10,28 @@
       <p class="text-center">Nous vous souhaitons une bonne navigation !</p>
       <br>
       <h2 class="text-center blue justify-content-center">Listes réferences </h2>
+
+      <form [formGroup]="researchForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="search">Recherche</label>
+          <input type="text"
+                 id="search"
+                 class="form-control"
+                 formControlName="search">
+
+          <select id="type" class="form-control" formControlName="type">
+            <option [value]="typeU" *ngFor="let typeU of selectType">{{typeU}}</option>
+          </select>
+
+          <button class="btn btn-primary"
+                  type="submit"
+                  [disabled]="researchForm.invalid">Rechercher</button>
+        </div>
+
+      </form>
+
+      <button (click)="onRemovedFilter()" *ngIf="refFiltred">X</button>
+
       <div class="list-group">
         <button
           class="list-group-item"

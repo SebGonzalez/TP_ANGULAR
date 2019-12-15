@@ -26,7 +26,6 @@ export class ReferencesService {
       .subscribe(
         (response) => {
           this.references = response;
-          console.log('Ref : ' + this.references);
           this.emitReferenceSubject();
         },
         (error) => {
@@ -94,5 +93,9 @@ export class ReferencesService {
         );
       }
     );
+  }
+
+  search(search: string, type: string) {
+    return [];
   }
 }

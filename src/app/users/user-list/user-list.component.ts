@@ -21,7 +21,7 @@ export class UserListComponent implements OnInit {
         this.users = users;
       }
     );
-    this.usersService.emitReferenceSubject();
+    this.usersService.emitUsersSubject();
   }
 
   onEditUser(id: number) {
