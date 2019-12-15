@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { VilleModule } from './ville/ville.module';
+import { DepartementModule } from './departement/departement.module';
+import { ReferenceModule } from './reference/reference.module';
 
 @Module({
   imports: 
@@ -22,8 +24,23 @@ import { VilleModule } from './ville/ville.module';
     database: 'db',
     entities: [__dirname + '/**/*.entity{.ts,.js}'],
     synchronize: true,
-  }), 
+  }),
 
+  DepartementModule, 
+  TypeOrmModule.forRoot({
+    type: 'sqlite',
+    database: 'db',
+    entities: [__dirname + '/**/*.entity{.ts,.js}'],
+    synchronize: true,
+ }), 
+ 
+  ReferenceModule,
+  TypeOrmModule.forRoot({
+    type: 'sqlite',
+    database: 'db',
+    entities: [__dirname + '/**/*.entity{.ts,.js}'],
+    synchronize: true,
+ })
   ],
 
   controllers: [AppController],
