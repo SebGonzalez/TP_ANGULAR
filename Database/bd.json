@@ -53,7 +53,7 @@
       "idVille": "1731",
       "anneeDebut": "rgergr",
       "anneeFin": "egergerg",
-      "montantPrestation": 12,
+      "montantPrestation": "12",
       "detailPrestation": [
         "rgrgrg",
         "C'est très cool"
@@ -63,7 +63,45 @@
         "Mobile",
         "IOT"
       ]
+    },
+
+    {
+      "id": "3",
+      "mission": "Développement d'une application pour représenter les liaisons chimique",
+      "client": "Newton corporation",
+      "idVille": "6",
+      "anneeDebut": "2016",
+      "anneeFin": "2018",
+      "montantPrestation": "835000€",
+      "detailPrestation": "Création d'une application mobile / pc pour representer différentes liaison chimiques entre plusieurs molécules qu'on est libre de préselectionner.",
+      "domaine": "Chimie"
+    }, 
+
+    {
+      "id": "4",
+      "mission": "Application de GPS embarqué",
+      "client": "BMW",
+      "idVille": "5555",
+      "anneeDebut": "2009",
+      "anneeFin": "2014",
+      "montantPrestation": "6868999€",
+      "detailPrestation": "Développement d'un gps embarqué pour les véhicules de la marque bmw. Localisation en temps réel, prise en compte du traffric, chemin le plus rapide ...",
+      "domaine": "circulation"
+    }, 
+    
+    {
+      "id": "5",
+      "mission": "Application de Gestion de logements ",
+      "client": "Crous",
+      "idVille": "6884",
+      "anneeDebut": "2018",
+      "anneeFin": "2021",
+      "montantPrestation": "444341€",
+      "detailPrestation": "Développement d'une application pour que les étudiants puissent signaler des problemes dans leur logement crous (comme des frigo déffectueux pas exemple). Le crous peut intervenir sr tout les logement grace a l'application.",
+      "domaine": "gestion"
     }
+
+
   ],
   "departement": [
     {

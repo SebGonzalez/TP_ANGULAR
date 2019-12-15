@@ -12,7 +12,7 @@ export class Reference {
     client: string;
 
     @Column()
-    idville: number;
+    idVille: number;
 
     @Column()
     anneeDebut: number;
@@ -25,6 +25,9 @@ export class Reference {
 
     @Column()
     detailPrestation: string;
+
+    @Column({ nullable: true })
+    img: string;
 
     @Column()
     domaine: string;
