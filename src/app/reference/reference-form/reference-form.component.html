@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-8 col-sm-offset-2">
-    <h2 class="blue text-center">Enregistrer une nouvelle référence</h2>
+    <h2 class="blue text-center down">Enregistrer une nouvelle référence</h2>
     <form [formGroup]="referenceForm" (ngSubmit)="onSaveReference()">
       <div class="form-group">
         <label for="mission">Nom de la mission</label>
@@ -71,7 +71,7 @@
         <p class="text-success" *ngIf="fileUploaded">Fichier chargé !</p>
       </div>
 
-      <button class="btn btn-success centrer" [disabled]="referenceForm.invalid || fileIsUploading"
+      <button class="btn btn-success centrer down" [disabled]="referenceForm.invalid || fileIsUploading"
               type="submit">Enregistrer
       </button>
 
