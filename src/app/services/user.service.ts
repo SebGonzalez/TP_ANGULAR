@@ -14,7 +14,7 @@ export class UserService implements CanActivate {
 
   typeUser: string;
   constructor(private httpClient: HttpClient, private router: Router) {
-    this.typeUser = TypeUser.NONCONNECTE;
+    this.typeUser = TypeUser.ADMIN;
   }
 
   getTypeUser() {
